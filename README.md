@@ -1,4 +1,3 @@
-system
-======
+# SymfonyAuthStarter
 
-A Symfony project created on November 15, 2015, 1:55 pm.
+A simple demonstration of using Symfony's built in Authentication system.  This is just a quick demo app that allows a user to login and logout.
