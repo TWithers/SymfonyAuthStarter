@@ -1,0 +1,33 @@
+# app/config/security.yml
+security:
+    providers:
+        db_auth:
+            entity:
+                class: EPCSystemBundle:User
+                property: username
+    encoders:
+        EPC\SystemBundle\Entity\User:
+            algorithm: bcrypt
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            provider: db_auth
+            form_login:
+                csrf_provider: security.csrf.token_manager
+                default_target_path: /test
+                check_path: /login_check
+                login_path: /login
+                remember_me: true
+                post_only: true
+            remember_me:
+                key: %secret%
+                lifetime: 120 # in seconds
+                path: /
+            logout:
+                path:   /logout
+                target: /
+            anonymous: ~
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
